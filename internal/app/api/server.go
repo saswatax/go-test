@@ -14,7 +14,12 @@ func StartServer() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
+	r.Use(testMiddleware)
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		message := r.Context().Value("message").(string)
+
+		fmt.Println(message)
+
 		w.Write([]byte("Server running"))
 	})
 
