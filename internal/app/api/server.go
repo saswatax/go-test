@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -10,7 +11,7 @@ import (
 )
 
 func StartServer() {
-	port := "8080"
+	port := os.Getenv("PORT")
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
